@@ -217,7 +217,7 @@ Reimbursements should be ordered by date
 
 ### **Update Reimbursement**  
 * **URL**
-  `/users`
+  `/reimbursements`
 
 * **Method:**
   `PATCH`

@@ -3,13 +3,6 @@ import { User } from '../models/user';
 import * as UserDao from '../dao/user.dao';
 // import { authMiddleware } from '../middleware/auth.middleware';
 
-const peter = new User(1, 'peter', 'password', 'peter');
-const kyle = new User(2, 'kyle', 'password', 'kyle');
-const users = [
-  peter,
-  kyle
-];
-
 // we will assume all routes defined with this router
 // start with '/users'
 export const userRouter = express.Router();

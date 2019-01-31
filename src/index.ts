@@ -1,11 +1,11 @@
 import express, { NextFunction } from 'express';
 import bodyParser from 'body-parser';
 import { userRouter } from './routers/user.router';
-// import { roleRouter } from './routers/role.router';
 import session from 'express-session';
 import { authRouter } from './routers/auth.router';
-import { reimRouter } from './routers/reimbursement.router';
+import { reimbRouter } from './routers/reimbursement.router';
 import { resolve } from 'path';
+import { User } from './models/user';
 
 const app = express();
 
@@ -30,42 +30,43 @@ const sess = {
 // any user data we want on
 app.use(session(sess));
 
+// Define router middleware
 app.use('/login', authRouter);
 app.use('/users', userRouter);
-app.use('/reimbursements', reimRouter);
+app.use('/reimbursements', reimbRouter);
 
 /* Endpoints */
 // Login
-// app.post('/login', (req, res) => {
-//   const user = req.body;
-//   console.log(user)
-//   res.sendStatus(201);
-// })
+app.post('/login', (req, res) => {
+  const user = req.body;
+  console.log(user);
+  res.sendStatus(201);
+})
 
 // Find Users
-// app.get('/users', (req, res) => {
-//   res.send('?');
-// })
+app.get('/users', (req, res) => {
+  res.send('?');
+})
 
 // Find Users By Id
-// app.get('/users/:id', (req, res) => {
-//   res.send('?');
-// });
+app.get('/users/:id', (req, res) => {
+  res.send('?');
+});
 
 // Update User
-// app.patch('/users', (req, res) => {
-//   resolve.send('?');
-// });
+app.patch('/users', (req, res) => {
+  res.send('?');
+});
 
 // Find Reimbursements By Status
-// app.get('/reimbursements/status/:statusId', (req, res) => {
-//   res.send('?');
-// });
+app.get('/reimbursements/status/:statusId', (req, res) => {
+  res.send('?');
+});
 
 // Find Reimbursements By User
-// app.get('/reimbursements/author/userId/:userId', (req, res) => {
-//   res.send;
-// });
+app.get('/reimbursements/author/userId/:userId', (req, res) => {
+  res.send('?');
+});
 
 // Submit Reimbursement
 app.get('/reimbursements', (req, res) => {
@@ -73,9 +74,9 @@ app.get('/reimbursements', (req, res) => {
 });
 
 // Update Reimbursement
-// app.patch('/users', (req, res) => {
-//   resolve.send('?');
-// });
+app.patch('/reimbursements', (req, res) => {
+  res.send('?');
+});
 
 app.listen(3000);
 console.log('application started on port: 3000');
