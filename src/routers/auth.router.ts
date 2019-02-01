@@ -1,5 +1,5 @@
 import express from 'express';
-// import { resolvePtr } from 'dns';
+import { resolvePtr } from 'dns';
 
 export const authRouter = express.Router();
 
@@ -11,10 +11,17 @@ authRouter.post('/login', (req, res) => {
     };
     req.session.user = user;
     res.json(user);
-  } else if (req.body.username === 'finman' && req.body.password === 'password') {
+  } else if (req.body.username === 'finman' && req.body.password === 'password1') {
     const user = {
       username: req.body.username,
       role: 'finance-manager'
+    };
+    req.session.user = user;
+    res.json(user);
+  } else if (req.body.username === 'noone' && req.body.password === 'letmein') {
+    const user = {
+      username: req.body.username,
+      role: 'associate'
     };
     req.session.user = user;
     res.json(user);
@@ -23,6 +30,6 @@ authRouter.post('/login', (req, res) => {
   }
 });
 
-authRouter.get('/info', (req, res) => {
-  res.json(req.session.user);
-});
+// authRouter.get('/info', (req, res) => {
+//   res.json(req.session.user);
+// });
