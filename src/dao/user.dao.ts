@@ -9,10 +9,13 @@ export async function findAll(): Promise<User[]> {
     );
     return result.rows.map(sqlUser => {
       return {
-        id: sqlUser['user_id'],
+        userId: sqlUser['userId'],
         username: sqlUser.username,
         password: '', // don't send back the passwords
-        name: sqlUser.name
+        firstName: sqlUser.firstName,
+        lastName: sqlUser.lastName,
+        email: sqlUser.email,
+        role: sqlUser.role
       };
     });
   } finally {
@@ -30,10 +33,13 @@ export async function findById(id: number): Promise<User> {
     const sqlUser = result.rows[0]; // there should only be 1 record
     if (sqlUser) {
       return {
-        id: sqlUser['user_id'],
+        userId: sqlUser['user_id'],
         username: sqlUser.username,
         password: '', // don't send back the passwords
-        name: sqlUser.name
+        firstName: sqlUser.firstName,
+        lastName: sqlUser.lastName,
+        email: sqlUser.email,
+        role: sqlUser.role
       };
     } else {
       return undefined;
@@ -43,20 +49,19 @@ export async function findById(id: number): Promise<User> {
   }
 }
 
-export async function save(user: User): Promise<User> {
+export async function update(user: User): Promise<User> {
   const client = await connectionPool.connect();
   try {
     const result = await client.query(
-      `INSERT INTO users (username, password, name)
-        VALUES  ($1, $2, $3)
+      `UPDATE users SET (username = $2, password, = $3, first_name = $4, last_name = $4, email = $5, role = $6) WHERE user_id = $1
         RETURNING user_id`,
-      [user.username, user.password, user.name]
+      [user.username, user.password, user.firstName, user.lastName, user.email, user.role]
     );
     if (result.rows[0]) {
       const id = result.rows[0].user_id;
       return {
         ...user,
-        id: id
+        userId: id
       };
     } else {
       return undefined;

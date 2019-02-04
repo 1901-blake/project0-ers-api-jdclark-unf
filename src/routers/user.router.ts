@@ -1,17 +1,13 @@
 import express from 'express';
 import { User } from '../models/user';
 import * as UserDao from '../dao/user.dao';
-// import { authMiddleware } from '../middleware/auth.middleware';
 
-// we will assume all routes defined with this router
-// start with '/users'
 export const userRouter = express.Router();
 
 // /users - find all
-userRouter.get('', [
+userRouter.get('/users', [
   // authMiddleware,
   async (req, res) => {
-    // res.json(users);
     try {
       const users = await UserDao.findAll();
       res.json(users);
@@ -38,7 +34,7 @@ userRouter.get('/:id', async (req, res) => {
 userRouter.post('', async (req, res) => {
   // users.push(req.body);
   try {
-    const user = await UserDao.save(req.body);
+    const user = await UserDao.update(req.body);
     res.status(201);
     res.json(user);
   } catch (err) {

@@ -1,9 +1,9 @@
 import express from 'express';
 import { resolvePtr } from 'dns';
 
-export const authRouter = express.Router();
+export const loginRouter = express.Router();
 
-authRouter.post('/login', (req, res) => {
+loginRouter.post('/login', (req, res) => {
   if (req.body.username === 'jclark' && req.body.password === 'password') {
     const user = {
       username: req.body.username,
@@ -30,6 +30,6 @@ authRouter.post('/login', (req, res) => {
   }
 });
 
-// authRouter.get('/info', (req, res) => {
+// loginRouter.get('/info', (req, res) => {
 //   res.json(req.session.user);
 // });
