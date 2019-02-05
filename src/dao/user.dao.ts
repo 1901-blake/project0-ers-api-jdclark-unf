@@ -71,4 +71,3 @@ export async function update(user: User): Promise<User> {
     client.release(); // release connection
   }
 }
-

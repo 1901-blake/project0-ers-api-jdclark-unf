@@ -30,11 +30,6 @@ const sess = {
 // any user data we want on
 app.use(session(sess));
 
-// Register router middleware
-app.use('/login', loginRouter);
-app.use('/users', userRouter);
-app.use('/reimbursements', reimbRouter);
-
 // Endpoints (i.e. URL paths)
 // Login
 app.post('/login', (req, res) => {
@@ -50,33 +45,39 @@ app.get('/users', (req, res) => {
 
 // Find Users By Id
 app.get('/users/:id', (req, res) => {
-  res.send(200);
+  res.sendStatus(200);
 });
 
 // Update User
 app.patch('/users', (req, res) => {
-  res.send(200);
+  res.sendStatus(200);
 });
 
 // Find Reimbursements By Status
 app.get('/reimbursements/status/:statusId', (req, res) => {
-  res.send(200);
+  res.sendStatus(200);
 });
 
 // Find Reimbursements By User
 app.get('/reimbursements/author/userId/:userId', (req, res) => {
-  res.send(200);
+  res.sendStatus(200);
 });
 
 // Submit Reimbursement
 app.post('/reimbursements', (req, res) => {
-  res.sendStatus(201);;
+  res.sendStatus(201);
 });
 
 // Update Reimbursement
 app.patch('/reimbursements', (req, res) => {
-  res.send(200);
+  res.sendStatus(200);
 });
 
+// Register router middleware
+app.use('/login', loginRouter);
+app.use('/users', userRouter);
+app.use('/reimbursements', reimbRouter);
+
+// Start server
 app.listen(3000);
 console.log(`IT'S ALIIIIIIIVE! Point your browser to http://localhost:3000`);

@@ -35,11 +35,10 @@ userRouter.post('', async (req, res) => {
   // users.push(req.body);
   try {
     const user = await UserDao.update(req.body);
-    res.status(201);
+    res.sendStatus(201);
     res.json(user);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
   }
 });
-
