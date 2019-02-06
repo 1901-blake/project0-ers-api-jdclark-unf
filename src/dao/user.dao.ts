@@ -9,7 +9,7 @@ export async function findAll(): Promise<User[]> {
     );
     return result.rows.map(sqlUser => {
       return {
-        userId: sqlUser['userId'],
+        userId: sqlUser['user_id'],
         username: sqlUser.username,
         password: '', // don't send back the passwords
         firstName: sqlUser.firstName,

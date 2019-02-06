@@ -1,5 +1,5 @@
 import express from 'express';
-import { User } from '../models/user';
+// import { User } from '../models/user';
 import * as UserDao from '../dao/user.dao';
 
 export const userRouter = express.Router();
@@ -31,7 +31,7 @@ userRouter.get('/:id', async (req, res) => {
   }
 });
 
-userRouter.post('', async (req, res) => {
+userRouter.patch('', async (req, res) => {
   // users.push(req.body);
   try {
     const user = await UserDao.update(req.body);

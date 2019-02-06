@@ -1,5 +1,5 @@
 import express, { NextFunction } from 'express';
-import bodyParser from 'body-parser';
+import bodyParser, { json } from 'body-parser';
 import { userRouter } from './routers/user.router';
 import session from 'express-session';
 import { loginRouter } from './routers/login.router';
@@ -25,10 +25,15 @@ const sess = {
   resave: false,
   saveUninitialized: false
 };
-// prior to this req.sesssion is nothing
+// prior to this req.session is nothing
 // after this req.session is an object we can store
 // any user data we want on
 app.use(session(sess));
+
+// Register router middleware
+app.use('/login', loginRouter);
+app.use('/users', userRouter);
+app.use('/reimbursements', reimbRouter);
 
 // Endpoints (i.e. URL paths)
 // Login
@@ -40,7 +45,7 @@ app.post('/login', (req, res) => {
 
 // Find Users
 app.get('/users', (req, res) => {
-  res.send(200);
+  res.sendStatus(200);
 });
 
 // Find Users By Id
@@ -72,11 +77,6 @@ app.post('/reimbursements', (req, res) => {
 app.patch('/reimbursements', (req, res) => {
   res.sendStatus(200);
 });
-
-// Register router middleware
-app.use('/login', loginRouter);
-app.use('/users', userRouter);
-app.use('/reimbursements', reimbRouter);
 
 // Start server
 app.listen(3000);

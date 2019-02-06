@@ -1,11 +1,11 @@
 import { Reimbursement} from '../models/reimbursement';
 import { connectionPool } from '../util/connection-util';
 
-export async function findByStatus(): Promise<Reimbursement[]> {
+export async function findByStatus(id: number): Promise<Reimbursement[]> {
     const client = await connectionPool.connect();
     try {
         const result = await client.query(
-            'SELECT * FROM reimbursements WHERE status = $1'
+            'SELECT * FROM reimbursements WHERE status = $1', [id]
         );
         return result.rows.map(sqlUser => {
             return {
@@ -25,11 +25,11 @@ export async function findByStatus(): Promise<Reimbursement[]> {
     }
 }
 
-export async function findByUser(): Promise<Reimbursement[]> {
+export async function findByUser(id: number): Promise<Reimbursement[]> {
     const client = await connectionPool.connect();
     try {
         const result = await client.query(
-            'SELECT * FROM reimbursements WHERE author = $1'
+            'SELECT * FROM reimbursements WHERE author = $1', [id]
         );
         return result.rows.map(sqlUser => {
             return {
@@ -49,7 +49,7 @@ export async function findByUser(): Promise<Reimbursement[]> {
     }
 }
 
-export async function submit(): Promise<Reimbursement[]> {
+export async function submit(reimb: Reimbursement): Promise<Reimbursement[]> {
     const client = await connectionPool.connect();
     try {
         const result = await client.query(
@@ -72,7 +72,7 @@ export async function submit(): Promise<Reimbursement[]> {
                 '0',
                 '1',
                 $3
-            )`
+            )`, [reimb.author, reimb.amount, reimb.type]
         );
         return result.rows.map(sqlUser => {
             return {
