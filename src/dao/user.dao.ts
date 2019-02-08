@@ -23,6 +23,7 @@ export async function findAll(): Promise<User[]> {
   }
 }
 
+// Find User By ID
 export async function findById(id: number): Promise<User> {
   const client = await connectionPool.connect();
   try {

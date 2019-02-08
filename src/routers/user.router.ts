@@ -1,6 +1,7 @@
 import express from 'express';
-// import { User } from '../models/user';
+import { User } from '../models/user';
 import * as UserDao from '../dao/user.dao';
+import { Session } from 'inspector';
 
 export const userRouter = express.Router();
 

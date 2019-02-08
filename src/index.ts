@@ -39,8 +39,9 @@ app.use('/reimbursements', reimbRouter);
 // Login
 app.post('/login', (req, res) => {
   const user = req.body;
-  console.log(user);
+  // console.log(user);
   res.sendStatus(201);
+  //console.log(req.session.user);
 });
 
 // Find Users

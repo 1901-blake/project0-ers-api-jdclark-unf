@@ -68,7 +68,7 @@ export async function submit(reimb: Reimbursement): Promise<Reimbursement[]> {
                 $1,
                 $2,
                 now(),
-                '9999-12-12 00:00:00-00',
+                '1970-01-01 00:00:00-00',
                 '0',
                 '1',
                 $3
