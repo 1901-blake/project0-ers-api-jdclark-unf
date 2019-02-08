@@ -10,12 +10,12 @@ export async function findAll(): Promise<User[]> {
     return result.rows.map(sqlUser => {
       return {
         userId: sqlUser['user_id'],
-        username: sqlUser.username,
+        username: sqlUser['username'],
         password: '', // don't send back the passwords
-        firstName: sqlUser.firstName,
-        lastName: sqlUser.lastName,
-        email: sqlUser.email,
-        role: sqlUser.role
+        firstName: sqlUser['first_name'],
+        lastName: sqlUser['last_name'],
+        email: sqlUser['email'],
+        role: sqlUser['role']
       };
     });
   } finally {
@@ -35,12 +35,12 @@ export async function findById(id: number): Promise<User> {
     if (sqlUser) {
       return {
         userId: sqlUser['user_id'],
-        username: sqlUser.username,
+        username: sqlUser['username'],
         password: '', // don't send back the passwords
-        firstName: sqlUser.firstName,
-        lastName: sqlUser.lastName,
-        email: sqlUser.email,
-        role: sqlUser.role
+        firstName: sqlUser['first_name'],
+        lastName: sqlUser['last_name'],
+        email: sqlUser['email'],
+        role: sqlUser['role']
       };
     } else {
       return undefined;
@@ -50,6 +50,7 @@ export async function findById(id: number): Promise<User> {
   }
 }
 
+// Update user
 export async function update(user: User): Promise<User> {
   const client = await connectionPool.connect();
   try {

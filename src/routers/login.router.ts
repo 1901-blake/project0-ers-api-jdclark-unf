@@ -3,7 +3,7 @@ import * as LoginDao from '../dao/login.dao';
 
 export const loginRouter = express.Router();
 
-loginRouter.post('/login', async (req, res) => {
+loginRouter.post('', async (req, res) => {
   console.log(req.body); // print request body for debugging
   const user = await LoginDao.authenticate(req.body.username); // function returns a User object
   console.log(user); // for debugging
@@ -18,6 +18,6 @@ loginRouter.post('/login', async (req, res) => {
 });
 
 // Copied from poke-api, not sure what it is for
-// loginRouter.get('/info', (req, res) => {
-//   res.json(req.session.user);
-// });
+loginRouter.get('/info', (req, res) => {
+  res.json(req.session.user);
+});
