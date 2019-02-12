@@ -4,9 +4,9 @@ import * as LoginDao from '../dao/login.dao';
 export const loginRouter = express.Router();
 
 loginRouter.post('', async (req, res) => {
-  console.log(req.body); // print request body for debugging
+  // console.log(req.body); // print request body for debugging
   const user = await LoginDao.authenticate(req.body.username); // function returns a User object
-  console.log(user); // for debugging
+  // console.log(user); // for debugging
   if (req.body.password === user.password) {
     user.password = ''; // don't keep carrying around password on user object
     req.session.user = user; // attach user to session object

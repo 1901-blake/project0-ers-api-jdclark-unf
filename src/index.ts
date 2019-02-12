@@ -4,10 +4,10 @@ import { userRouter } from './routers/user.router';
 import session from 'express-session';
 import { loginRouter } from './routers/login.router';
 import { reimbRouter } from './routers/reimbursement.router';
-import { resolve } from 'path';
-import { User } from './models/user';
 
 const app = express();
+
+app.use('/', express.static('/public'));
 
 // set up body parser to convert json body to js object and attach to req
 app.use(bodyParser.json());
@@ -38,9 +38,7 @@ app.use('/reimbursements', reimbRouter);
 // Endpoints (i.e. URL paths)
 // Login
 app.post('/login', (req, res) => {
-  const user = req.body;
-  console.log(user);
-  res.sendStatus(201);
+  res.sendStatus(200);
 });
 
 // Find Users
@@ -75,9 +73,9 @@ app.post('/reimbursements', (req, res) => {
 
 // Update Reimbursement
 app.patch('/reimbursements', (req, res) => {
-  res.sendStatus(200);
+  res.sendStatus(201);
 });
 
 // Start server
 app.listen(3000);
-console.log(`IT'S ALIIIIIIIVE! Point your browser to http://localhost:3000`);
+console.log(`Server started at http://localhost:3000`);
