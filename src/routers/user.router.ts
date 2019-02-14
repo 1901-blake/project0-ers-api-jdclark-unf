@@ -46,7 +46,7 @@ userRouter.patch('', async (req, res) => {
   if (req.session.user && req.session.user.role === 1) {
     try {
       const user = await UserDao.update(req.body);
-      res.sendStatus(201);
+      res.status(201);
       res.json(user);
     } catch (err) {
       console.log(err);

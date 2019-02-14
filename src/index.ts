@@ -4,10 +4,9 @@ import { userRouter } from './routers/user.router';
 import session from 'express-session';
 import { loginRouter } from './routers/login.router';
 import { reimbRouter } from './routers/reimbursement.router';
+import { dirname } from 'path';
 
 const app = express();
-
-app.use('/', express.static('/public'));
 
 // set up body parser to convert json body to js object and attach to req
 app.use(bodyParser.json());
@@ -32,48 +31,52 @@ app.use(session(sess));
 
 // Register router middleware
 app.use('/login', loginRouter);
-app.use('/users', userRouter);
+app.use('/users', userRouter); 
 app.use('/reimbursements', reimbRouter);
 
 // Endpoints (i.e. URL paths)
 // Login
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/views/login.html');
+});
 app.post('/login', (req, res) => {
-  res.sendStatus(200);
+    res.sendFile(__dirname + '/views/index.html');
+    console.log(res.statusCode);
 });
 
 // Find Users
 app.get('/users', (req, res) => {
-  res.sendStatus(200);
+  console.log(res.statusCode);
 });
 
 // Find Users By Id
 app.get('/users/:id', (req, res) => {
-  res.sendStatus(200);
+  console.log(res.statusCode);
 });
 
 // Update User
 app.patch('/users', (req, res) => {
-  res.sendStatus(200);
+  console.log(res.statusCode);
 });
 
 // Find Reimbursements By Status
 app.get('/reimbursements/status/:statusId', (req, res) => {
-  res.sendStatus(200);
+  console.log(res.statusCode);
 });
 
 // Find Reimbursements By User
 app.get('/reimbursements/author/userId/:userId', (req, res) => {
-  res.sendStatus(200);
+  console.log(res.statusCode);
 });
 
 // Submit Reimbursement
 app.post('/reimbursements', (req, res) => {
-  res.sendStatus(201);
+  console.log(res.statusCode);
 });
 
 // Update Reimbursement
 app.patch('/reimbursements', (req, res) => {
-  res.sendStatus(201);
+  console.log(res.statusCode);
 });
 
 // Start server

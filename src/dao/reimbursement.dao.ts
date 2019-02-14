@@ -76,7 +76,6 @@ export async function submit(reimb: Reimbursement): Promise<Reimbursement> {
             ) RETURNING *`, [reimb.author, reimb.amount, reimb.description, reimb.type]
         );
         const sqlReimb = result.rows[0]; // there should only be 1 record
-        console.log(sqlReimb);
         if (sqlReimb) {
              return {
                 reimbursementId: sqlReimb['reimbursement_id'],
