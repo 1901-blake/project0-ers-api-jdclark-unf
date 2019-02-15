@@ -8,7 +8,7 @@ reimbRouter.post('', async (req, res) => {
     if (req.session.user) {
         try {
             const input = req.body;
-            input.author = 3;
+            input.author = req.session.user.userId;
             const reimb = await ReimbDao.submit(input);
             res.status(201);
             res.json(reimb);

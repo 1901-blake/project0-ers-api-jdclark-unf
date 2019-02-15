@@ -3,12 +3,60 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Main</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/html" media="screen" href="main.css">
+    <!-- <script src="main.js"></script> -->
 </head>
 <body>
-    <h1>Test</h1>
+    <div class="container">
+    <h1>Choose a destination</h1>
+    <ul>
+        <li>
+            <a href="/users">View Users</a>
+        </li>
+        <li>
+            <a href="/users/1">View Admin User</a>
+        </li>
+        <li>
+            <a href="/users/2">View Finance Manager</a>
+        </li>
+        <li>
+            <a href="/users/3">View Associate</a>
+        </li>
+        <li>
+            <span>Update User [unimplemented; requires fetch()]</span>
+        </li>
+        <li>
+            <a href="/reimbursements/status/1">View Pending Reimbursements</a>
+        </li>
+        <li>
+            <a href="/reimbursements/author/userId/3">View Associate's Reimbursements</a>
+        </li>
+    </ul>
+</div>
+<div class="container">
+    <h3>Submit Reimbursement</h3>
+    <form id="submit-reimbursement" action="/reimbursements" method="POST">
+        <label for="amount" class="text-info">Reimbursement Amount:</label><br>
+        <input type="text" name="amount" id="amount" class="form-control"><br>
+
+        <label for="description" class="text-info">Description:</label><br>
+        <textarea name="description" id="description" rows="5" cols="25" class="form-control"></textarea><br>
+
+        <label for="type" class="text-info">Reimbursement Type</label><br>
+        <select name="type" id="type" class="form-control">
+            <option value="1">Lodging</option>
+            <option value="2">Travel</option>
+            <option value="3">Food</option>
+            <option value="4">Other</option>
+        </select><br>
+        <input type="submit"></input>
+    </form>
+</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </html>

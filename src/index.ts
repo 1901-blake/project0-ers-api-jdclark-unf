@@ -8,8 +8,19 @@ import { dirname } from 'path';
 
 const app = express();
 
+// CORS
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', `http://localhost:3000`);
+//  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//  res.header('Access-Control-Allow-Credentials', 'true');
+//  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+//  next();
+// });
+
 // set up body parser to convert json body to js object and attach to req
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.json);
 
 // create logging middleware
 app.use((req, res, next) => {
@@ -35,12 +46,13 @@ app.use('/users', userRouter);
 app.use('/reimbursements', reimbRouter);
 
 // Endpoints (i.e. URL paths)
-// Login
+// Root directory
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/login.html');
+  res.sendFile(__dirname + '/views/auth.html');
 });
+
+// Login
 app.post('/login', (req, res) => {
-    res.sendFile(__dirname + '/views/index.html');
     console.log(res.statusCode);
 });
 

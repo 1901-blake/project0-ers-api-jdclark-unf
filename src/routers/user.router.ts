@@ -1,5 +1,6 @@
 import express from 'express';
 import * as UserDao from '../dao/user.dao';
+import path from 'path';
 
 export const userRouter = express.Router();
 
@@ -11,6 +12,7 @@ userRouter.get('', async (req, res) => {
     try {
       const userList = await UserDao.findAll();
       res.json(userList);
+      // res.sendFile(path.join(__dirname, '../views', 'users.html'));
     } catch (err) {
       console.log(err);
       res.sendStatus(500);
